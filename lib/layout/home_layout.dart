@@ -16,11 +16,11 @@ class HomeLayout extends StatelessWidget {
           appBar: AppBar(
             title: const Text(
               'mab',
-              style: TextStyle(color: kColorE),
+              style: TextStyle(color: kLightGrey),
             ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
-            iconTheme: const IconThemeData(color: kColorE),
+            iconTheme: const IconThemeData(color: kLightGrey),
           ),
           body:
               AppCubit.get(context).screens[AppCubit.get(context).currentIndex],

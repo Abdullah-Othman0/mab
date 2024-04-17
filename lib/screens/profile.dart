@@ -16,7 +16,7 @@ class Profile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 const CircleAvatar(
-                  backgroundColor: kColorE,
+                  backgroundColor: kDarkBlue,
                   backgroundImage: NetworkImage(''),
                   radius: 60,
                 ),
@@ -56,7 +56,7 @@ class Profile extends StatelessWidget {
                     'Sayed Mosaad Moawad',
                     style: TextStyle(
                       fontSize: 18,
-                      color: kColorE,
+                      color: kDarkTeal,
                     ),
                   ),
                 ],
@@ -79,7 +79,7 @@ class Profile extends StatelessWidget {
                     'sayedmoawad@gmail.com',
                     style: TextStyle(
                       fontSize: 18,
-                      color: kColorE,
+                      color: kDarkTeal,
                     ),
                   ),
                 ],
@@ -102,7 +102,7 @@ class Profile extends StatelessWidget {
                     '+181234567891',
                     style: TextStyle(
                       fontSize: 18,
-                      color: kColorE,
+                      color: kDarkTeal,
                     ),
                   ),
                 ],
@@ -125,7 +125,7 @@ class Profile extends StatelessWidget {
                     '25',
                     style: TextStyle(
                       fontSize: 18,
-                      color: kColorE,
+                      color: kDarkTeal,
                     ),
                   ),
                 ],
@@ -137,12 +137,12 @@ class Profile extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                     overlayColor:
-                        MaterialStateColor.resolveWith((states) => kColorB),
+                        MaterialStateColor.resolveWith((states) => kLightTeal),
                     foregroundColor:
-                        MaterialStateColor.resolveWith((states) => kColorE)),
+                        MaterialStateColor.resolveWith((states) => kDarkTeal)),
                 child: const Text(
                   'Edit Profile',
-                  style: TextStyle(color: kColorE),
+                  style: TextStyle(color: kDarkTeal),
                 ),
               ),
             )

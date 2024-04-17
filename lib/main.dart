@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mab/screens/dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('اتزنقنا يسطا, نلحق بقا'),
-        ),
-      ),
+      home: DashboardScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
