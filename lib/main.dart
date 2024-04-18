@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mab/screens/dashboard.dart';
+import 'package:mab/screens/register/register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: DashboardScreen(),
+    return MaterialApp(
+      home: Register(),
       debugShowCheckedModeBanner: false,
     );
   }

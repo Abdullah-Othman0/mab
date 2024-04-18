@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mab/layout/home_layout.dart';
-import 'package:mab/screens/login/login.dart';
+import 'package:mab/screens/dashboard.dart';
 import 'package:mab/screens/register/cubit/cubit.dart';
 import 'package:mab/screens/register/cubit/states.dart';
 import 'package:mab/shared/components/components.dart';
 
-class Register extends StatelessWidget {
-  Register({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class Login extends StatelessWidget {
+  Login({Key? key}) : super(key: key);
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -39,14 +39,14 @@ class Register extends StatelessWidget {
                           'REGISTER',
                           style: Theme.of(context)
                               .textTheme
-                              .headlineLarge
-                              ?.copyWith(color: Color.fromARGB(255, 27, 99, 113)),
+                              .headline3
+                              ?.copyWith(color: Colors.black),
                         ),
                         Text(
                           'Register now and enjoy the app',
                           style: Theme.of(context)
                               .textTheme
-                              .bodyMedium
+                              .bodyText1
                               ?.copyWith(color: Colors.grey),
                         ),
                         SizedBox(
@@ -55,7 +55,7 @@ class Register extends StatelessWidget {
                         DefaultTextField(
                             fun: (String? value) {
                               if (value!.isEmpty) {
-                                return 'Enter your full name';
+                                return 'Enter Name';
                               }
                               return null;
                             },
@@ -69,7 +69,7 @@ class Register extends StatelessWidget {
                         DefaultTextField(
                             fun: (String? value) {
                               if (value!.isEmpty) {
-                                return 'Phone number';
+                                return 'Enter Phone';
                               }
                               return null;
                             },
@@ -113,90 +113,10 @@ class Register extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        DefaultTextField(
-                            fun: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Age';
-                              }
-                              return null;
-                            },
-                            controler: nameController,
-                            text: 'Age',
-                            preIcon: Icons.calendar_view_week_rounded,
-                            keyboard: TextInputType.number),
-
-                        SizedBox(
-                          height: 30,
-                        ),
-                     ChoiceChip(
-                      label: Text('Female'),
-                      selected: _selectedGender == 'female',
-                      onSelected: (selected) {
-                     setState(() {
-                     _selectedGender = selected ? 'female' : null;
-                    });
-                   },
-                   ),
-                    SizedBox(height: 10),
-                     ChoiceChip(
-                      label: Text('Male'),
-                      selected: _selectedGender == 'male',
-                      onSelected: (selected) {
-                     setState(() {
-                   _selectedGender = selected ? 'male' : null;
-                  });
-                },
-                  ),
-                   SizedBox(height: 20),
-                   Text(
-                  'Selected gender: ${_selectedGender ?? 'None'}',
-                    style: TextStyle(fontSize: 18),
-                    ),
-
-                            SizedBox(
-                          height: 30,
-                        ),
-                        DefaultTextField(
-                            fun: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Height';
-                              }
-                              return null;
-                            },
-                            controler: nameController,
-                            text: 'Height',
-                            preIcon: Icons.arrow_circle_up,
-                            keyboard: TextInputType.number),
-
-                         SizedBox(
-                          height: 30,
-                        ),
-                        DefaultTextField(
-                            fun: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Weight';
-                              }
-                              return null;
-                            },
-                            controler: nameController,
-                            text: 'Weight',
-                            preIcon: Icons.arrow_circle_up,
-                            keyboard: TextInputType.number),
-
-                  SizedBox(
-                          height: 30,
-                        ),
-                        Description(
-                       title: Text('Enter Disease'),
-                       padding: EdgeInsets.zero,
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
                         defaultbotton(
                           text: 'register',
                           onPress: () {
-                            navigateTo(context, HomeLayout());
+                            navigateTo(context, DashboardScreen());
                           },
                         ),
                         SizedBox(
@@ -211,7 +131,7 @@ class Register extends StatelessWidget {
                             ),
                             TextButton(
                                 onPressed: () {
-                                  navigateTo(context, Login());
+                                  // navigateTo(context, Login());
                                 },
                                 child: Text(
                                   'login'.toUpperCase(),
@@ -231,4 +151,3 @@ class Register extends StatelessWidget {
     );
   }
 }
-

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mab/screens/profile.dart';
+import 'package:mab/shared/components/components.dart';
 import 'package:mab/shared/styles/colors.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -39,24 +41,29 @@ class DashboardScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Good Evening, Mark',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
+                    GestureDetector(
+                      onTap: () {
+                        navigateTo(context, Profile());
+                      },
+                      child: const Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Good Evening, Mark',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'how are you today?',
-                            style: TextStyle(fontSize: 14, color: kDarkTeal),
-                          ),
-                        ],
+                            Text(
+                              'how are you today?',
+                              style: TextStyle(fontSize: 14, color: kDarkTeal),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],
