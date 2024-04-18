@@ -4,11 +4,13 @@ import 'package:mab/shared/components/components.dart';
 import 'package:mab/shared/styles/colors.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  DashboardScreen({super.key});
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0),
@@ -18,9 +20,10 @@ class DashboardScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.dehaze),
+                    DrawerButton(
+                      onPressed: () {
+                        _key.currentState!.openDrawer();
+                      },
                     ),
                     Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -43,7 +46,7 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        navigateTo(context, Profile());
+                        navigateTo(context, const Profile());
                       },
                       child: const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
@@ -246,7 +249,7 @@ class DashboardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                     child: Text(
                       'Upcoming Medicine',
@@ -254,10 +257,10 @@ class DashboardScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                     child: TextButton(
                       onPressed: () {},
-                      child: Text('View All'),
+                      child: const Text('View All'),
                     ),
                   ),
                 ],
@@ -267,7 +270,7 @@ class DashboardScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(24),
@@ -281,11 +284,108 @@ class DashboardScreen extends StatelessWidget {
                     ],
                   ),
                   child: ListView.builder(
-                    itemBuilder: (context, index) => ListItem(),
+                    itemBuilder: (context, index) => const ListItem(),
                     itemCount: 15,
                     shrinkWrap: true,
                   ),
                 ),
+              )
+            ],
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 8),
+          child: Column(
+            children: [
+              Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                color: kDarkTeal,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              const Text(
+                'Mark Wael',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                  navigateTo(context, const Profile());
+                },
+                leading: const Icon(Icons.person),
+                title: const Text('Profile'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.favorite),
+                title: Text('Health Monitors'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.medical_information),
+                title: Text('Drug Conflict'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.assignment_rounded),
+                title: Text('Medical History'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+              ),
+              const ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: Colors.redAccent,
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(
+                    color: Colors.redAccent,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Privacy Policy'),
+                  ),
+                  Container(
+                    height: 14,
+                    width: 1,
+                    color: Colors.grey,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Contact us'),
+                  ),
+                ],
               )
             ],
           ),
@@ -301,7 +401,7 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -312,17 +412,17 @@ class ListItem extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Trimed Flu',
                   style: TextStyle(fontSize: 24),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                   child: Text(
                     'Pills',
                     style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
@@ -336,19 +436,19 @@ class ListItem extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Due',
                       style: TextStyle(fontSize: 14),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                       child: Text(
                         'Tuesday, 10:00am',
                         style: TextStyle(
                             fontSize: 14, color: Colors.grey.shade500),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       width: 100,
                       height: 32,
@@ -356,7 +456,7 @@ class ListItem extends StatelessWidget {
                         color: kDarkTeal,
                         borderRadius: BorderRadius.circular(32),
                       ),
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Text(
                         'Done',
                         style: TextStyle(

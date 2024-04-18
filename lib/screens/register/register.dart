@@ -7,6 +7,8 @@ import 'package:mab/screens/register/cubit/cubit.dart';
 import 'package:mab/screens/register/cubit/states.dart';
 import 'package:mab/shared/components/components.dart';
 
+import '../login/login.dart';
+
 // ignore: must_be_immutable
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
@@ -219,7 +221,7 @@ class Register extends StatelessWidget {
                               ),
                               TextButton(
                                   onPressed: () {
-                                    // navigateTo(context, Login());
+                                    navigateTo(context, Login());
                                   },
                                   child: Text(
                                     'login'.toUpperCase(),

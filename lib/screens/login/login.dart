@@ -7,6 +7,8 @@ import 'package:mab/screens/register/cubit/cubit.dart';
 import 'package:mab/screens/register/cubit/states.dart';
 import 'package:mab/shared/components/components.dart';
 
+import '../register/register.dart';
+
 // ignore: must_be_immutable
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -16,8 +18,6 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
 
     return BlocProvider(
       create: (context) => RegisterCubit(),
@@ -36,7 +36,7 @@ class Login extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'REGISTER',
+                          'LOGIN',
                           style: Theme.of(context)
                               .textTheme
                               .headline3
@@ -51,34 +51,6 @@ class Login extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 30,
-                        ),
-                        DefaultTextField(
-                            fun: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Enter Name';
-                              }
-                              return null;
-                            },
-                            controler: nameController,
-                            text: 'Name',
-                            preIcon: Icons.person,
-                            keyboard: TextInputType.name),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        DefaultTextField(
-                            fun: (String? value) {
-                              if (value!.isEmpty) {
-                                return 'Enter Phone';
-                              }
-                              return null;
-                            },
-                            controler: phoneController,
-                            text: 'Phone',
-                            preIcon: Icons.phone,
-                            keyboard: TextInputType.phone),
-                        SizedBox(
-                          height: 15,
                         ),
                         DefaultTextField(
                             fun: (String? value) {
@@ -114,7 +86,7 @@ class Login extends StatelessWidget {
                           height: 30,
                         ),
                         defaultbotton(
-                          text: 'register',
+                          text: 'Login',
                           onPress: () {
                             navigateTo(context, DashboardScreen());
                           },
@@ -126,15 +98,15 @@ class Login extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Already a user?",
+                              "Not a user?",
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
                             TextButton(
                                 onPressed: () {
-                                  // navigateTo(context, Login());
+                                  navigateTo(context, Register());
                                 },
                                 child: Text(
-                                  'login'.toUpperCase(),
+                                  'Register'.toUpperCase(),
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ))
                           ],
