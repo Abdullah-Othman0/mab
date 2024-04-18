@@ -1,26 +1,27 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mab/layout/home_layout.dart';
-import 'package:mab/screens/login/cubit/cubit.dart';
-import 'package:mab/screens/login/cubit/states.dart';
-import 'package:mab/screens/register/register.dart';
+import 'package:mab/screens/login/login.dart';
+import 'package:mab/screens/register/cubit/cubit.dart';
+import 'package:mab/screens/register/cubit/states.dart';
 import 'package:mab/shared/components/components.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
-
+class Register extends StatelessWidget {
+  Register({Key? key}) : super(key: key);
   var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    var nameController = TextEditingController();
+    var phoneController = TextEditingController();
 
     return BlocProvider(
-      create: (BuildContext context) => LoginCubit(),
-      child: BlocConsumer<LoginCubit, LoginStates>(
+      create: (context) => RegisterCubit(),
+      child: BlocConsumer<RegisterCubit, RegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
@@ -35,21 +36,49 @@ class Login extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'LOGIN',
+                          'REGISTER',
                           style: Theme.of(context)
                               .textTheme
-                              .headline3
-                              ?.copyWith(color: Colors.black),
+                              .headlineLarge
+                              ?.copyWith(color: Color.fromARGB(255, 27, 99, 113)),
                         ),
                         Text(
-                          'Login now and enjoy the app',
+                          'Register now and enjoy the app',
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1
+                              .bodyMedium
                               ?.copyWith(color: Colors.grey),
                         ),
                         SizedBox(
                           height: 30,
+                        ),
+                        DefaultTextField(
+                            fun: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Enter your full name';
+                              }
+                              return null;
+                            },
+                            controler: nameController,
+                            text: 'Name',
+                            preIcon: Icons.person,
+                            keyboard: TextInputType.name),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        DefaultTextField(
+                            fun: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Phone number';
+                              }
+                              return null;
+                            },
+                            controler: phoneController,
+                            text: 'Phone',
+                            preIcon: Icons.phone,
+                            keyboard: TextInputType.phone),
+                        SizedBox(
+                          height: 15,
                         ),
                         DefaultTextField(
                             fun: (String? value) {
@@ -72,16 +101,100 @@ class Login extends StatelessWidget {
                             }
                             return null;
                           },
+                          controler: passwordController,
                           text: 'Password',
                           preIcon: Icons.lock_outline,
-                          sufPressed: () {},
-                          controler: passwordController,
+                          secure: RegisterCubit.get(context).isPassword,
+                          sufIcon: RegisterCubit.get(context).suffIcon,
+                          sufPressed: () {
+                            RegisterCubit.get(context).changePassword();
+                          },
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        DefaultTextField(
+                            fun: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Age';
+                              }
+                              return null;
+                            },
+                            controler: nameController,
+                            text: 'Age',
+                            preIcon: Icons.calendar_view_week_rounded,
+                            keyboard: TextInputType.number),
+
+                        SizedBox(
+                          height: 30,
+                        ),
+                     ChoiceChip(
+                      label: Text('Female'),
+                      selected: _selectedGender == 'female',
+                      onSelected: (selected) {
+                     setState(() {
+                     _selectedGender = selected ? 'female' : null;
+                    });
+                   },
+                   ),
+                    SizedBox(height: 10),
+                     ChoiceChip(
+                      label: Text('Male'),
+                      selected: _selectedGender == 'male',
+                      onSelected: (selected) {
+                     setState(() {
+                   _selectedGender = selected ? 'male' : null;
+                  });
+                },
+                  ),
+                   SizedBox(height: 20),
+                   Text(
+                  'Selected gender: ${_selectedGender ?? 'None'}',
+                    style: TextStyle(fontSize: 18),
+                    ),
+
+                            SizedBox(
+                          height: 30,
+                        ),
+                        DefaultTextField(
+                            fun: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Height';
+                              }
+                              return null;
+                            },
+                            controler: nameController,
+                            text: 'Height',
+                            preIcon: Icons.arrow_circle_up,
+                            keyboard: TextInputType.number),
+
+                         SizedBox(
+                          height: 30,
+                        ),
+                        DefaultTextField(
+                            fun: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Weight';
+                              }
+                              return null;
+                            },
+                            controler: nameController,
+                            text: 'Weight',
+                            preIcon: Icons.arrow_circle_up,
+                            keyboard: TextInputType.number),
+
+                  SizedBox(
+                          height: 30,
+                        ),
+                        Description(
+                       title: Text('Enter Disease'),
+                       padding: EdgeInsets.zero,
                         ),
                         SizedBox(
                           height: 30,
                         ),
                         defaultbotton(
-                          text: 'login',
+                          text: 'register',
                           onPress: () {
                             navigateTo(context, HomeLayout());
                           },
@@ -93,15 +206,15 @@ class Login extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account?",
+                              "Already a user?",
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
                             TextButton(
                                 onPressed: () {
-                                  navigateTo(context, Register());
+                                  navigateTo(context, Login());
                                 },
                                 child: Text(
-                                  'Register'.toUpperCase(),
+                                  'login'.toUpperCase(),
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ))
                           ],
@@ -118,3 +231,4 @@ class Login extends StatelessWidget {
     );
   }
 }
+
