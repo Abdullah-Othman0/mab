@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"bracelet-esp32","appId":"1:802414848424:android:5cf79cb968c429df8a959d","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"bracelet-esp32","configurations":{"android":"1:802414848424:android:5cf79cb968c429df8a959d","ios":"1:802414848424:ios:f32a1f26348afded8a959d"}}}}}}

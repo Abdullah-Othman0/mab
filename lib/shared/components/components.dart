@@ -39,9 +39,15 @@ Widget DefaultTextField({
         controller: controler,
         obscureText: secure,
         decoration: InputDecoration(
+          labelStyle: TextStyle(color: kDarkTeal),
           labelText: text,
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(color: kDarkTeal)),
           prefixIcon: Icon(preIcon),
+          focusColor: kDarkTeal,
+          hoverColor: kDarkTeal,
           suffixIcon: IconButton(
             icon: Icon(sufIcon),
             onPressed: sufPressed,
@@ -52,7 +58,7 @@ Widget defaultbotton({
   Color textColor = Colors.white,
   double? width = double.infinity,
   required String text,
-  double? radius = 5.0,
+  double? radius = 32.0,
   BoxBorder? border,
   double? height = 50,
   required VoidCallback onPress,
@@ -93,5 +99,19 @@ Widget defaultbotton({
         ),
       ],
     ),
+  );
+}
+
+Widget pageTitle(title, {color = kDarkBlue}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        title,
+        textAlign: TextAlign.center,
+        style:
+            TextStyle(fontSize: 30, color: color, fontWeight: FontWeight.w500),
+      ),
+    ],
   );
 }

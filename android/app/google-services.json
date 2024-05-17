@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "802414848424",
+    "firebase_url": "https://bracelet-esp32-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bracelet-esp32",
+    "storage_bucket": "bracelet-esp32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802414848424:android:5cf79cb968c429df8a959d",
+        "android_client_info": {
+          "package_name": "com.example.mab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_fROTlRiIbcw9_6Nv4PwZUO21agQMvi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

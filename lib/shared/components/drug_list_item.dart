@@ -1,9 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mab/layout/cubit/cubit.dart';
+import 'package:mab/models/medicine_model.dart';
 
 import '../styles/colors.dart';
 
 class DrugListItem extends StatelessWidget {
-  const DrugListItem({super.key});
+  DrugListItem({super.key, required this.m});
+  Medicine m;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +30,14 @@ class DrugListItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Trimed Flu',
+                Text(
+                  m.name!,
                   style: TextStyle(fontSize: 24),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                   child: Text(
-                    'Pills',
+                    m.type!,
                     style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
                   ),
                 ),
@@ -40,38 +46,58 @@ class DrugListItem extends StatelessWidget {
                   thickness: 1,
                   color: Colors.grey.shade200,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Due',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                      child: Text(
-                        'Tuesday, 10:00am',
-                        style: TextStyle(
-                            fontSize: 14, color: Colors.grey.shade500),
+                m.isDone!
+                    ? const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Done',
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Hours left: ',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8, 0, 0, 0),
+                            child: Text(
+                              m.hoursLeft.toString(),
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.grey.shade500),
+                            ),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<AppCubit>(context).markAsDone(m);
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                color: kDarkTeal,
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                              alignment: const AlignmentDirectional(0, 0),
+                              child: Text(
+                                'Done',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.grey.shade300),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      width: 100,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: kDarkTeal,
-                        borderRadius: BorderRadius.circular(32),
-                      ),
-                      alignment: const AlignmentDirectional(0, 0),
-                      child: Text(
-                        'Done',
-                        style: TextStyle(
-                            fontSize: 16, color: Colors.grey.shade300),
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
