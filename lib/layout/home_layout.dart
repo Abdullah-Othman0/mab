@@ -11,13 +11,15 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit()..getData(),
+      create: (context) => AppCubit()
+        ..getData()
+        ..getDrugs(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
             appBar: PreferredSize(
-                preferredSize: Size(double.infinity, 30),
+                preferredSize: const Size(double.infinity, 30),
                 child: SizedBox(
                     height: 0,
                     child: BlocProvider.of<AppCubit>(context).myAppBar)),
